@@ -2,20 +2,24 @@
 @plugin "tailwindcss-animate";
 
 @theme {
-  --color-background: #080A18;
-  --color-foreground: #F7F6FF;
-  --color-border: rgba(255, 255, 255, 0.15); /* Sharper, more visible border */
+  --color-background: #FFFFFF;
+  --color-foreground: #222222;
+  --color-border: #D5C7BC; /* Dust Grey */
 
-  --color-deep-space: #0B0D1A;
-  --color-indigo-night: #151B3B;
-  --color-neon-purple: #6B48FF;
-  --color-electric-pink: #FF4F91;
-  --color-neon-orange: #FF9547;
-  --color-solar-glow: #FFD166;
-  --color-cosmic-blue: #74A8FF;
+  /* Semantic mapping for the new palette */
+  --color-deep-space: #E9FAE3; /* Honeydew light for alternate backgrounds */
+  --color-indigo-night: #DEE8D5; /* Honeydew dark */
+  
+  --color-neon-purple: #AC92A6; /* Lilac Ash */
+  --color-electric-pink: #D5C7BC; /* Dust Grey */
+  --color-neon-orange: #AC92A6; /* Lilac Ash */
+  
+  --color-surface: #FFFFFF;
+  --color-elevated: #E9FAE3;
 
-  --color-surface: #11172D;
-  --color-elevated: #1A2144;
+  /* Redefining white to be dark for tailwind classes to flip text colors easily */
+  --color-white: #222222;
+  --color-black: #FFFFFF;
 
   --font-sans: var(--font-inter);
   --font-heading: var(--font-space-grotesk);
@@ -38,8 +42,8 @@
   
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    letter-spacing: -0.04em; /* Tight tracking */
-    line-height: 0.9; /* Tight leading */
+    letter-spacing: -0.04em;
+    line-height: 0.9;
     text-transform: uppercase;
   }
 
@@ -55,13 +59,12 @@
 @utility swiss-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0; /* Swiss style relies on alignment and borders, not gaps */
+  gap: 0;
   @media (min-width: 768px) {
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 }
 
-/* Hard geometric utility classes */
 @utility swiss-border {
   border: 1px solid var(--color-border);
 }
@@ -76,11 +79,4 @@
 }
 @utility swiss-border-r {
   border-right: 1px solid var(--color-border);
-}
-
-@utility cosmic-text {
-  color: var(--color-foreground);
-}
-@utility cosmic-text-accent {
-  color: var(--color-neon-purple);
 }
