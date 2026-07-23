@@ -15,7 +15,7 @@ export function Hero() {
           
           <div className="md:col-span-8 md:col-start-1 relative z-20">
             <MaskedReveal direction="up" duration={1.2} delay={0.2}>
-              <h1 className="text-7xl md:text-[8rem] lg:text-[11rem] font-bold leading-[0.85] tracking-tighter uppercase text-white m-0 p-0 drop-shadow-2xl">
+              <h1 className="text-5xl sm:text-7xl md:text-[7.5vw] lg:text-[6.5vw] font-bold leading-[0.85] tracking-tighter uppercase text-white m-0 p-0 drop-shadow-2xl">
                 {siteConfig.name.split(' ')[0]}<br />
                 <span className="text-[var(--color-electric-pink)]">{siteConfig.name.split(' ')[1] || 'Store'}</span>
               </h1>
