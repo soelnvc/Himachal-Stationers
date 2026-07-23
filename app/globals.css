@@ -21,6 +21,9 @@
   --color-white: #222222;
   --color-black: #FFFFFF;
 
+  --color-absolute-light: #FFFFFF;
+  --color-absolute-dark: #222222;
+
   --font-sans: var(--font-inter);
   --font-heading: var(--font-space-grotesk);
 

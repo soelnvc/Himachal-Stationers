@@ -21,7 +21,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-background)]/80 backdrop-blur-md border-b border-[var(--color-border)]">
         <div className="w-full h-24 px-6 md:px-12 flex items-center justify-between">
           <Link href="/" className="text-3xl font-bold font-heading uppercase text-white tracking-tighter">
             {siteConfig.name}
