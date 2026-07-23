@@ -1,81 +1,69 @@
 import { siteConfig } from '@/app/data/siteConfig';
 import { SectionHeading } from '../shared/SectionHeading';
-import { AnimateIn } from '../shared/AnimateIn';
-import { GlowCard } from '../shared/GlowCard';
-import { MapPin, Navigation } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { MaskedReveal } from '../shared/MaskedReveal';
+import { SwissGridLine } from '../shared/SwissGridLine';
 
 export function MapSection() {
   return (
-    <section id="location" className="py-24 relative">
-      <div className="container mx-auto px-6 relative z-10">
-        <SectionHeading 
-          title="Visit the Store" 
-          subtitle="Experience the cosmic collection in person. We'd love to see you." 
-        />
-        
-        <div className="swiss-grid items-center">
-          <div className="col-span-4 md:col-span-5 space-y-8">
-            <AnimateIn delay={0.1} direction="right">
+    <section id="location" className="py-32 relative bg-[var(--color-background)] overflow-hidden">
+      <SwissGridLine direction="horizontal" className="top-0" />
+      <SwissGridLine direction="vertical" className="left-1/3 hidden md:block" />
+      
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+          
+          <div className="md:col-span-4 flex flex-col justify-center">
+            <SectionHeading 
+              title="Locate Us" 
+              className="mb-8 md:mb-12"
+            />
+            <MaskedReveal direction="left" delay={0.2}>
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center shrink-0">
-                    <MapPin className="w-6 h-6 text-[var(--color-neon-purple)]" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2">Location</h3>
-                    <p className="text-white/70 text-lg leading-relaxed">
-                      {siteConfig.address.split(',').map((line, i) => (
-                        <span key={i} className="block">{line.trim()}{i < siteConfig.address.split(',').length - 1 ? ',' : ''}</span>
-                      ))}
-                    </p>
-                  </div>
+                <div>
+                  <div className="text-xs font-bold text-[var(--color-neon-orange)] tracking-widest uppercase mb-2">Address</div>
+                  <p className="text-2xl text-white font-medium">{siteConfig.address}</p>
                 </div>
                 
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center shrink-0">
-                    <Navigation className="w-6 h-6 text-[var(--color-cosmic-blue)]" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2">Hours</h3>
-                    <div className="text-white/70 space-y-1">
-                      <p>Mon - Fri: 10:00 AM - 7:00 PM</p>
-                      <p>Sat: 11:00 AM - 6:00 PM</p>
-                      <p>Sun: Closed</p>
-                    </div>
-                  </div>
+                <div>
+                  <div className="text-xs font-bold text-[var(--color-electric-pink)] tracking-widest uppercase mb-2">Hours</div>
+                  <ul className="text-lg text-white/80 space-y-1 font-medium">
+                    <li>Mon-Fri: 9AM - 8PM</li>
+                    <li>Sat-Sun: 10AM - 6PM</li>
+                  </ul>
                 </div>
                 
-                <div className="pt-4">
+                <div className="pt-8">
                   <a 
                     href={`https://maps.google.com/?q=${encodeURIComponent(siteConfig.address)}`} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-full border border-[var(--color-border)] hover:bg-white/5 hover:text-white h-12 px-6 font-medium transition-colors"
+                    className="inline-flex items-center justify-between group border-b-2 border-white pb-2 w-full text-white hover:text-[var(--color-electric-pink)] hover:border-[var(--color-electric-pink)] transition-colors text-xl uppercase tracking-widest font-bold"
                   >
-                    Get Directions
+                    <span>Get Directions</span>
+                    <span className="group-hover:translate-x-4 transition-transform duration-300">↗</span>
                   </a>
                 </div>
               </div>
-            </AnimateIn>
+            </MaskedReveal>
           </div>
           
-          <div className="col-span-4 md:col-span-7">
-            <AnimateIn delay={0.3} direction="left">
-              <GlowCard hoverEffect={false} className="p-2 overflow-hidden h-[400px]">
+          <div className="md:col-span-8 relative">
+            <MaskedReveal direction="up" delay={0.4} className="h-full">
+              <div className="aspect-square md:aspect-video w-full relative grayscale contrast-125 hover:grayscale-0 transition-all duration-700 border border-[var(--color-border)]">
                 <iframe
                   src={siteConfig.mapEmbedUrl}
                   width="100%"
                   height="100%"
-                  style={{ border: 0, borderRadius: '0.75rem', filter: 'grayscale(1) invert(0.9) hue-rotate(180deg)' }}
+                  style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="rounded-xl opacity-80 mix-blend-screen"
+                  className="absolute inset-0"
                 ></iframe>
-              </GlowCard>
-            </AnimateIn>
+              </div>
+            </MaskedReveal>
           </div>
+          
         </div>
       </div>
     </section>

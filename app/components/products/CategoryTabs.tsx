@@ -10,16 +10,16 @@ interface CategoryTabsProps {
 
 export function CategoryTabs({ activeCategory, onCategoryChange }: CategoryTabsProps) {
   return (
-    <div className="flex flex-wrap gap-3 mb-12">
+    <div className="flex flex-wrap gap-0 border border-[var(--color-border)] inline-flex bg-[var(--color-background)]">
       {categories.map((category) => (
         <button
           key={category}
           onClick={() => onCategoryChange(category)}
           className={cn(
-            "px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300",
+            "px-6 py-4 text-sm font-bold uppercase tracking-widest transition-colors border-r border-[var(--color-border)] last:border-r-0 outline-none",
             activeCategory === category
-              ? "bg-[var(--color-surface)] text-white border border-[var(--color-neon-purple)] shadow-[0_0_15px_rgba(107,72,255,0.3)]"
-              : "bg-transparent text-white/60 border border-[var(--color-border)] hover:bg-white/5 hover:text-white"
+              ? "bg-[var(--color-foreground)] text-[var(--color-background)]"
+              : "bg-transparent text-white/60 hover:bg-white/10 hover:text-white"
           )}
         >
           {category}

@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { GlowCard } from '../shared/GlowCard';
+import { MaskedReveal } from '../shared/MaskedReveal';
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -11,71 +10,72 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
     setIsSubmitting(false);
     setIsSubmitted(true);
   };
 
   if (isSubmitted) {
     return (
-      <GlowCard className="p-8 text-center py-16">
-        <div className="w-16 h-16 bg-gradient-to-r from-[var(--color-neon-purple)] to-[var(--color-electric-pink)] rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h3 className="text-2xl font-bold text-white mb-2">Message Sent</h3>
-        <p className="text-white/70">We'll get back to you as soon as possible.</p>
-      </GlowCard>
+      <div className="p-12 border border-[var(--color-border)] text-center bg-[var(--color-background)]">
+        <h3 className="text-4xl font-bold font-heading uppercase text-white mb-4">Transmission Sent</h3>
+        <p className="text-xl text-[var(--color-neon-purple)] font-medium">We'll get back to you shortly.</p>
+      </div>
     );
   }
 
   return (
-    <GlowCard className="p-8" hoverEffect={false}>
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <label htmlFor="name" className="text-sm font-medium text-white/80">Name</label>
+    <form onSubmit={handleSubmit} className="space-y-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <MaskedReveal direction="up" delay={0.1}>
+          <div className="relative group">
             <input
               type="text"
               id="name"
               required
-              className="w-full bg-[var(--color-deep-space)] border border-[var(--color-border)] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[var(--color-neon-purple)] focus:ring-1 focus:ring-[var(--color-neon-purple)] transition-all"
-              placeholder="John Doe"
+              className="w-full bg-transparent border-0 border-b-2 border-[var(--color-border)] py-4 text-xl text-white focus:outline-none focus:border-[var(--color-neon-purple)] transition-colors peer placeholder-transparent"
+              placeholder="Name"
             />
+            <label htmlFor="name" className="absolute left-0 top-4 text-white/50 text-xl font-medium transition-all peer-focus:-top-6 peer-focus:text-sm peer-focus:text-[var(--color-neon-purple)] peer-valid:-top-6 peer-valid:text-sm peer-valid:text-white/50">Name</label>
           </div>
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-white/80">Email</label>
+        </MaskedReveal>
+        
+        <MaskedReveal direction="up" delay={0.2}>
+          <div className="relative group">
             <input
               type="email"
               id="email"
               required
-              className="w-full bg-[var(--color-deep-space)] border border-[var(--color-border)] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[var(--color-neon-purple)] focus:ring-1 focus:ring-[var(--color-neon-purple)] transition-all"
-              placeholder="john@example.com"
+              className="w-full bg-transparent border-0 border-b-2 border-[var(--color-border)] py-4 text-xl text-white focus:outline-none focus:border-[var(--color-neon-purple)] transition-colors peer placeholder-transparent"
+              placeholder="Email"
             />
+            <label htmlFor="email" className="absolute left-0 top-4 text-white/50 text-xl font-medium transition-all peer-focus:-top-6 peer-focus:text-sm peer-focus:text-[var(--color-neon-purple)] peer-valid:-top-6 peer-valid:text-sm peer-valid:text-white/50">Email</label>
           </div>
-        </div>
-        <div className="space-y-2">
-          <label htmlFor="message" className="text-sm font-medium text-white/80">Message</label>
+        </MaskedReveal>
+      </div>
+      
+      <MaskedReveal direction="up" delay={0.3}>
+        <div className="relative group">
           <textarea
             id="message"
             required
-            rows={4}
-            className="w-full bg-[var(--color-deep-space)] border border-[var(--color-border)] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[var(--color-neon-purple)] focus:ring-1 focus:ring-[var(--color-neon-purple)] transition-all resize-none"
-            placeholder="How can we help you?"
+            rows={1}
+            className="w-full bg-transparent border-0 border-b-2 border-[var(--color-border)] py-4 text-xl text-white focus:outline-none focus:border-[var(--color-neon-purple)] transition-colors peer placeholder-transparent resize-none overflow-hidden"
+            placeholder="Message"
           ></textarea>
+          <label htmlFor="message" className="absolute left-0 top-4 text-white/50 text-xl font-medium transition-all peer-focus:-top-6 peer-focus:text-sm peer-focus:text-[var(--color-neon-purple)] peer-valid:-top-6 peer-valid:text-sm peer-valid:text-white/50">Message</label>
         </div>
-        <Button 
+      </MaskedReveal>
+      
+      <MaskedReveal direction="up" delay={0.4}>
+        <button 
           type="submit" 
           disabled={isSubmitting}
-          className="w-full h-14 text-base font-semibold rounded-full bg-gradient-to-r from-[var(--color-neon-purple)] to-[var(--color-electric-pink)] hover:opacity-90 transition-opacity border-0 shadow-[0_0_20px_rgba(107,72,255,0.3)] text-white"
+          className="w-full h-20 text-2xl font-bold font-heading tracking-widest uppercase bg-white text-[var(--color-background)] hover:bg-[var(--color-neon-purple)] hover:text-white transition-colors disabled:opacity-50 cursor-pointer"
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}
-        </Button>
-      </form>
-    </GlowCard>
+        </button>
+      </MaskedReveal>
+    </form>
   );
 }

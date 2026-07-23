@@ -1,58 +1,61 @@
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/app/data/siteConfig';
-import { AnimateIn } from '../shared/AnimateIn';
+import { MaskedReveal } from '../shared/MaskedReveal';
+import { SwissGridLine } from '../shared/SwissGridLine';
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
-      {/* Background glow effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--color-neon-purple)]/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-[var(--color-electric-pink)]/15 rounded-full blur-[100px] pointer-events-none" />
+    <section className="relative min-h-screen pt-20 flex flex-col justify-end pb-12 overflow-hidden bg-[var(--color-background)]">
+      {/* Structural grid lines */}
+      <SwissGridLine direction="horizontal" className="top-32" delay={0.5} />
+      <SwissGridLine direction="vertical" className="left-6 md:left-24" delay={0.6} />
       
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="swiss-grid items-center">
-          <div className="col-span-4 md:col-span-6 space-y-8">
-            <AnimateIn delay={0.1}>
-              <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-balance">
-                {siteConfig.tagline}
+      <div className="container mx-auto px-6 md:px-24 relative z-10 w-full mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-12 items-end">
+          
+          <div className="md:col-span-8 md:col-start-1 relative z-20">
+            <MaskedReveal direction="up" duration={1.2} delay={0.2}>
+              <h1 className="text-7xl md:text-[8rem] lg:text-[11rem] font-bold leading-[0.85] tracking-tighter uppercase text-white m-0 p-0 drop-shadow-2xl">
+                {siteConfig.name.split(' ')[0]}<br />
+                <span className="text-[var(--color-electric-pink)]">{siteConfig.name.split(' ')[1] || 'Store'}</span>
               </h1>
-            </AnimateIn>
-            
-            <AnimateIn delay={0.2}>
-              <p className="text-lg md:text-xl text-white/70 max-w-lg text-balance">
-                {siteConfig.description}
-              </p>
-            </AnimateIn>
-            
-            <AnimateIn delay={0.3}>
-              <div className="pt-4">
-                <a 
-                  href="#shop"
-                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[var(--color-neon-purple)] via-[var(--color-electric-pink)] to-[var(--color-neon-orange)] text-white border-0 hover:opacity-90 transition-opacity h-14 px-8 text-base font-semibold shadow-[0_0_20px_rgba(255,79,145,0.4)]"
-                >
-                  Explore Collection
-                </a>
-              </div>
-            </AnimateIn>
+            </MaskedReveal>
           </div>
           
-          <div className="col-span-4 md:col-span-6 mt-12 md:mt-0">
-            <AnimateIn delay={0.4} direction="left" className="relative">
-              <div className="aspect-[4/5] md:aspect-square relative rounded-3xl overflow-hidden border border-[var(--color-border)] shadow-[0_0_40px_rgba(107,72,255,0.2)]">
-                {/* Fallback placeholder color if no image */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-indigo-night)] to-[var(--color-deep-space)]" />
-                <Image
-                  src="https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=1200&auto=format&fit=crop"
-                  alt="Premium stationery collection"
-                  fill
-                  className="object-cover mix-blend-overlay opacity-80"
-                  priority
-                />
-              </div>
-            </AnimateIn>
+          <div className="md:col-span-4 md:col-start-9 flex flex-col justify-end space-y-8 pb-4">
+            <MaskedReveal direction="left" duration={1} delay={0.6}>
+              <p className="text-xl md:text-2xl text-white font-medium text-balance border-l-4 border-[var(--color-neon-orange)] pl-6 drop-shadow-lg">
+                {siteConfig.description}
+              </p>
+            </MaskedReveal>
+            
+            <MaskedReveal direction="up" duration={0.8} delay={0.8}>
+              <a 
+                href="#shop"
+                className="inline-flex items-center justify-between group border-b-2 border-white pb-4 w-full text-white hover:text-[var(--color-neon-orange)] hover:border-[var(--color-neon-orange)] transition-colors text-2xl uppercase tracking-tight font-bold"
+              >
+                <span>Explore</span>
+                <span className="group-hover:translate-x-4 transition-transform duration-300">→</span>
+              </a>
+            </MaskedReveal>
           </div>
+          
         </div>
+      </div>
+
+      {/* Masked background image reveal */}
+      <div className="absolute inset-0 z-0">
+        <MaskedReveal direction="down" duration={1.5} delay={0.1} className="w-full h-full">
+          <div className="w-full h-full relative after:absolute after:inset-0 after:bg-black/50">
+            <Image
+              src="https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=2400&auto=format&fit=crop"
+              alt="Premium stationery collection"
+              fill
+              className="object-cover object-center opacity-80"
+              priority
+            />
+          </div>
+        </MaskedReveal>
       </div>
     </section>
   );

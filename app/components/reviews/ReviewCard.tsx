@@ -1,6 +1,4 @@
 import { Review } from '@/app/types';
-import { GlowCard } from '../shared/GlowCard';
-import { Star } from 'lucide-react';
 
 interface ReviewCardProps {
   review: Review;
@@ -8,25 +6,23 @@ interface ReviewCardProps {
 
 export function ReviewCard({ review }: ReviewCardProps) {
   return (
-    <GlowCard className="h-full flex flex-col p-8">
-      <div className="flex gap-1 mb-6">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star
-            key={i}
-            className={`w-5 h-5 ${
-              i < review.rating
-                ? 'fill-[var(--color-solar-glow)] text-[var(--color-solar-glow)]'
-                : 'text-white/20'
-            }`}
-          />
-        ))}
+    <div className="flex flex-col h-full">
+      <div className="text-[6rem] leading-[0.5] font-heading text-[var(--color-border)] font-bold mb-8">"</div>
+      <p className="text-2xl md:text-3xl font-medium text-white text-balance tracking-tight leading-snug mb-12 flex-grow">
+        {review.content}
+      </p>
+      
+      <div className="flex items-center space-x-4 border-t border-[var(--color-border)] pt-8">
+        <div className="w-12 h-12 bg-white flex items-center justify-center font-bold text-[var(--color-background)] font-heading uppercase text-xl">
+          {review.name.charAt(0)}
+        </div>
+        <div>
+          <h4 className="font-bold text-white uppercase tracking-widest text-sm">{review.name}</h4>
+          <p className="text-[var(--color-electric-pink)] text-xs uppercase tracking-widest mt-1">
+            {Array.from({ length: review.rating }).map(() => '★').join('')}
+          </p>
+        </div>
       </div>
-      <blockquote className="text-lg text-white/80 leading-relaxed mb-8 flex-grow">
-        "{review.content}"
-      </blockquote>
-      <div className="font-semibold text-white tracking-wide">
-        {review.name}
-      </div>
-    </GlowCard>
+    </div>
   );
 }

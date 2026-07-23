@@ -5,56 +5,44 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[var(--color-deep-space)] pt-16 pb-8 border-t border-[var(--color-border)] relative overflow-hidden">
-      {/* Subtle nebula divider */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--color-neon-purple)] to-transparent opacity-50" />
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="swiss-grid mb-16">
-          <div className="col-span-4 md:col-span-4">
-            <Link href="/" className="text-2xl font-bold font-heading cosmic-gradient-text inline-block mb-4">
+    <footer className="bg-[var(--color-background)] pt-32 pb-12 border-t border-[var(--color-border)] relative overflow-hidden">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-32">
+          
+          <div className="md:col-span-6">
+            <Link href="/" className="text-5xl md:text-7xl font-bold font-heading text-white uppercase tracking-tighter leading-none block mb-8 hover:text-[var(--color-neon-purple)] transition-colors">
               {siteConfig.name}
             </Link>
-            <p className="text-white/60 max-w-sm mb-6">
+            <p className="text-xl text-white/50 max-w-md font-medium text-balance">
               {siteConfig.tagline}
             </p>
           </div>
           
-          <div className="col-span-2 md:col-span-2 md:col-start-7">
-            <h4 className="text-white font-semibold mb-4">Shop</h4>
-            <ul className="space-y-3">
-              <li><Link href="#shop" className="text-white/60 hover:text-white transition-colors">All Products</Link></li>
-              <li><Link href="#shop" className="text-white/60 hover:text-white transition-colors">Best Sellers</Link></li>
-              <li><Link href="#shop" className="text-white/60 hover:text-white transition-colors">New Arrivals</Link></li>
+          <div className="md:col-span-2 md:col-start-9">
+            <h4 className="text-[var(--color-neon-orange)] text-xs font-bold uppercase tracking-widest mb-6">Index</h4>
+            <ul className="space-y-4">
+              <li><Link href="#shop" className="text-lg text-white font-medium hover:text-[var(--color-neon-orange)] transition-colors uppercase tracking-wider">Shop</Link></li>
+              <li><Link href="#reviews" className="text-lg text-white font-medium hover:text-[var(--color-neon-orange)] transition-colors uppercase tracking-wider">Reviews</Link></li>
+              <li><Link href="#location" className="text-lg text-white font-medium hover:text-[var(--color-neon-orange)] transition-colors uppercase tracking-wider">Location</Link></li>
             </ul>
           </div>
           
-          <div className="col-span-2 md:col-span-2">
-            <h4 className="text-white font-semibold mb-4">Support</h4>
-            <ul className="space-y-3">
-              <li><Link href="#contact" className="text-white/60 hover:text-white transition-colors">Contact Us</Link></li>
-              <li><Link href="#location" className="text-white/60 hover:text-white transition-colors">Store Location</Link></li>
-              <li><Link href="#reviews" className="text-white/60 hover:text-white transition-colors">Testimonials</Link></li>
-            </ul>
-          </div>
-          
-          <div className="col-span-4 md:col-span-2">
-            <h4 className="text-white font-semibold mb-4">Social</h4>
-            <ul className="space-y-3">
-              <li><a href={siteConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-electric-pink)] transition-colors">Instagram</a></li>
-              <li><a href={siteConfig.socials.twitter} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-cosmic-blue)] transition-colors">Twitter</a></li>
-              <li><a href={siteConfig.socials.facebook} target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-[var(--color-neon-purple)] transition-colors">Facebook</a></li>
+          <div className="md:col-span-2">
+            <h4 className="text-[var(--color-electric-pink)] text-xs font-bold uppercase tracking-widest mb-6">Social</h4>
+            <ul className="space-y-4">
+              <li><a href={siteConfig.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-lg text-white font-medium hover:text-[var(--color-electric-pink)] transition-colors uppercase tracking-wider">Instagram</a></li>
+              <li><a href={siteConfig.socials.twitter} target="_blank" rel="noopener noreferrer" className="text-lg text-white font-medium hover:text-[var(--color-electric-pink)] transition-colors uppercase tracking-wider">Twitter</a></li>
             </ul>
           </div>
         </div>
         
         <div className="pt-8 border-t border-[var(--color-border)] flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/40 text-sm">
-            © {currentYear} {siteConfig.name}. All rights reserved.
+          <p className="text-white/30 text-sm uppercase tracking-widest font-bold">
+            © {currentYear} {siteConfig.name}. ALL RIGHTS RESERVED.
           </p>
-          <div className="flex gap-4 text-sm text-white/40">
-            <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+          <div className="flex gap-8 text-sm text-white/30 font-bold uppercase tracking-widest">
+            <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="#" className="hover:text-white transition-colors">Terms</Link>
           </div>
         </div>
       </div>

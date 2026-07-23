@@ -4,7 +4,7 @@
 @theme {
   --color-background: #080A18;
   --color-foreground: #F7F6FF;
-  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border: rgba(255, 255, 255, 0.15); /* Sharper, more visible border */
 
   --color-deep-space: #0B0D1A;
   --color-indigo-night: #151B3B;
@@ -19,6 +19,13 @@
 
   --font-sans: var(--font-inter);
   --font-heading: var(--font-space-grotesk);
+
+  /* Force 0px radius globally for tailwind radius utilities */
+  --radius-xl: 0px;
+  --radius-lg: 0px;
+  --radius-md: 0px;
+  --radius-sm: 0px;
+  --radius: 0px;
 }
 
 @layer base {
@@ -31,7 +38,13 @@
   
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.04em; /* Tight tracking */
+    line-height: 0.9; /* Tight leading */
+    text-transform: uppercase;
+  }
+
+  * {
+    border-radius: 0px !important;
   }
 }
 
@@ -42,20 +55,32 @@
 @utility swiss-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.5rem;
+  gap: 0; /* Swiss style relies on alignment and borders, not gaps */
   @media (min-width: 768px) {
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 }
 
-@utility cosmic-gradient-text {
-  background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(to right, var(--color-neon-purple), var(--color-electric-pink), var(--color-neon-orange));
+/* Hard geometric utility classes */
+@utility swiss-border {
+  border: 1px solid var(--color-border);
+}
+@utility swiss-border-t {
+  border-top: 1px solid var(--color-border);
+}
+@utility swiss-border-b {
+  border-bottom: 1px solid var(--color-border);
+}
+@utility swiss-border-l {
+  border-left: 1px solid var(--color-border);
+}
+@utility swiss-border-r {
+  border-right: 1px solid var(--color-border);
 }
 
-@utility cosmic-border {
-  border: 1px solid var(--color-border);
-  background-color: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
+@utility cosmic-text {
+  color: var(--color-foreground);
+}
+@utility cosmic-text-accent {
+  color: var(--color-neon-purple);
 }
