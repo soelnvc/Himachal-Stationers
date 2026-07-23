@@ -22,7 +22,7 @@ export function SwissGridLine({ direction = 'horizontal', className, delay = 0 }
         scaleX: 1,
         scaleY: 1
       }}
-      viewport={{ once: true, margin: "-5%" }}
+      viewport={{ once: true, margin: "0px" }}
       transition={{
         duration: 1,
         delay,

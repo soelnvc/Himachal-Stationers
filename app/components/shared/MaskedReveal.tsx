@@ -43,7 +43,7 @@ export function MaskedReveal({
           clipPath: clipPaths[direction].animate,
           ...transformPaths[direction].animate
         }}
-        viewport={{ once: true, margin: "-10%" }}
+        viewport={{ once: true, margin: "0px" }}
         transition={{
           duration,
           delay,

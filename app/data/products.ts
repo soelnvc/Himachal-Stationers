@@ -7,7 +7,7 @@ export const products: Product[] = [
     id: '1',
     name: 'Cosmic Gradient Notebook',
     category: 'Paperwork',
-    image: 'https://images.unsplash.com/photo-1531346878377-a5447ca3c3ec?q=80&w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop',
     price: '$24.00',
     isBestSeller: true,
   },
@@ -38,7 +38,7 @@ export const products: Product[] = [
     id: '5',
     name: 'Starlight Highlighters',
     category: 'Kids & Art',
-    image: 'https://images.unsplash.com/photo-1527863280628-98952f462bb8?q=80&w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=600&auto=format&fit=crop',
     price: '$12.00',
   },
   {
