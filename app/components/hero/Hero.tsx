@@ -1,34 +1,43 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import { siteConfig } from '@/app/data/siteConfig';
 import { MaskedReveal } from '../shared/MaskedReveal';
 import { SwissGridLine } from '../shared/SwissGridLine';
+import { motion, useMotionValue, useSpring, useMotionTemplate } from 'motion/react';
 
 export function Hero() {
-  const [pointer, setPointer] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false);
+  // Motion values for tracking cursor and liquid radius
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const revealRadius = useMotionValue(0);
+
+  // Springs for liquid physical responsiveness
+  const springConfig = { damping: 35, stiffness: 150, mass: 0.6 };
+  const pointerX = useSpring(mouseX, springConfig);
+  const pointerY = useSpring(mouseY, springConfig);
+  const pointerRadius = useSpring(revealRadius, { damping: 25, stiffness: 100 });
+
+  // CSS Mask template with soft-edge radial gradient
+  const maskImage = useMotionTemplate`radial-gradient(circle ${pointerRadius}px at ${pointerX}px ${pointerY}px, black 25%, transparent 100%)`;
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setPointer({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-    setIsVisible(true);
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+    revealRadius.set(240); // Size of reveal circle
   };
 
   const handlePointerLeave = () => {
-    setIsVisible(false);
+    revealRadius.set(0);
   };
 
   return (
     <section 
-      className="relative min-h-screen pt-24 flex flex-col justify-between pb-12 overflow-hidden bg-[var(--color-background)] cursor-none"
+      className="relative min-h-screen pt-24 flex flex-col justify-between pb-12 overflow-hidden bg-[var(--color-background)] cursor-crosshair"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      onPointerDown={handlePointerMove} // capture mobile touch-down
+      onPointerDown={handlePointerMove} // Capture mobile touch-down
     >
       {/* Structural grid lines */}
       <SwissGridLine direction="horizontal" className="top-32" delay={0.5} />
@@ -41,7 +50,7 @@ export function Hero() {
             <MaskedReveal direction="up" duration={1.2} delay={0.2}>
               <h1 className="text-6xl sm:text-8xl md:text-[11vw] lg:text-[12vw] font-bold leading-[0.8] tracking-tighter uppercase text-[var(--color-absolute-light)] m-0 p-0 drop-shadow-2xl">
                 {siteConfig.name.split(' ')[0]}<br />
-                <span className="text-[var(--color-neon-purple)]">{siteConfig.name.split(' ')[1] || 'Store'}</span>
+                <span className="text-[var(--color-electric-pink)]">{siteConfig.name.split(' ')[1] || 'Store'}</span>
               </h1>
             </MaskedReveal>
           </div>
@@ -86,17 +95,12 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Layer 2: Clean revealed image on top */}
-        <div 
+        {/* Layer 2: Clean revealed image on top with spring physics & soft radial mask */}
+        <motion.div 
           className="absolute inset-0 w-full h-full"
           style={{
-            clipPath: isVisible 
-              ? `circle(150px at ${pointer.x}px ${pointer.y}px)` 
-              : 'circle(0px at 50% 50%)',
-            WebkitClipPath: isVisible 
-              ? `circle(150px at ${pointer.x}px ${pointer.y}px)` 
-              : 'circle(0px at 50% 50%)',
-            transition: isVisible ? 'none' : 'clip-path 0.5s cubic-bezier(0.76, 0, 0.24, 1), -webkit-clip-path 0.5s cubic-bezier(0.76, 0, 0.24, 1)'
+            maskImage: maskImage,
+            WebkitMaskImage: maskImage,
           }}
         >
           <div className="w-full h-full relative">
@@ -108,7 +112,7 @@ export function Hero() {
               priority
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
