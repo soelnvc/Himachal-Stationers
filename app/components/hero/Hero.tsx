@@ -47,7 +47,7 @@ export function Hero() {
         <div className="flex flex-col space-y-12">
           
           <div className="w-full">
-            <MaskedReveal direction="up" duration={1.2} delay={0.2}>
+            <MaskedReveal direction="up" duration={1.2} delay={0.2} animateOnMount={true}>
               <h1 className="text-6xl sm:text-8xl md:text-[11vw] lg:text-[12vw] font-bold leading-[0.8] tracking-tighter uppercase text-[var(--color-absolute-light)] m-0 p-0 drop-shadow-2xl">
                 {siteConfig.name.split(' ')[0]}<br />
                 <span className="text-[var(--color-electric-pink)]">{siteConfig.name.split(' ')[1] || 'Store'}</span>
@@ -57,7 +57,7 @@ export function Hero() {
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end border-t border-[rgba(255,255,255,0.2)] pt-8">
             <div className="md:col-span-7">
-              <MaskedReveal direction="left" duration={1} delay={0.6}>
+              <MaskedReveal direction="left" duration={1} delay={0.6} animateOnMount={true}>
                 <p className="text-xl md:text-2xl text-[var(--color-absolute-light)] font-medium text-balance border-l-4 border-[var(--color-neon-orange)] pl-6 drop-shadow-lg">
                   {siteConfig.description}
                 </p>
@@ -65,7 +65,7 @@ export function Hero() {
             </div>
 
             <div className="md:col-span-5 pointer-events-auto">
-              <MaskedReveal direction="up" duration={0.8} delay={0.8}>
+              <MaskedReveal direction="up" duration={0.8} delay={0.8} animateOnMount={true}>
                 <a 
                   href="#shop"
                   className="inline-flex items-center justify-between group border-b-2 border-[var(--color-absolute-light)] pb-4 w-full text-[var(--color-absolute-light)] hover:text-[var(--color-neon-orange)] hover:border-[var(--color-neon-orange)] transition-colors text-2xl uppercase tracking-tight font-bold"

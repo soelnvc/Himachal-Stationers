@@ -9,6 +9,7 @@ interface MaskedRevealProps {
   direction?: 'up' | 'down' | 'left' | 'right';
   className?: string;
   duration?: number;
+  animateOnMount?: boolean;
 }
 
 export function MaskedReveal({ 
@@ -16,7 +17,8 @@ export function MaskedReveal({
   delay = 0, 
   direction = 'up', 
   className = '',
-  duration = 0.8
+  duration = 0.8,
+  animateOnMount = false
 }: MaskedRevealProps) {
   const clipPaths = {
     up: { initial: 'inset(100% 0 0 0)', animate: 'inset(0% 0 0 0)' },
@@ -32,6 +34,21 @@ export function MaskedReveal({
     right: { initial: { x: -20 }, animate: { x: 0 } },
   };
 
+  const animationProps = animateOnMount 
+    ? {
+        animate: { 
+          clipPath: clipPaths[direction].animate,
+          ...transformPaths[direction].animate
+        }
+      }
+    : {
+        whileInView: { 
+          clipPath: clipPaths[direction].animate,
+          ...transformPaths[direction].animate
+        },
+        viewport: { once: true, margin: "0px" }
+      };
+
   return (
     <div className={className} style={{ overflow: 'hidden' }}>
       <motion.div
@@ -39,11 +56,7 @@ export function MaskedReveal({
           clipPath: clipPaths[direction].initial,
           ...transformPaths[direction].initial
         }}
-        whileInView={{ 
-          clipPath: clipPaths[direction].animate,
-          ...transformPaths[direction].animate
-        }}
-        viewport={{ once: true, margin: "0px" }}
+        {...animationProps}
         transition={{
           duration,
           delay,
