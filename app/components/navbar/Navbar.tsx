@@ -35,7 +35,7 @@ export function Navbar() {
                 href={link.href}
                 className={cn(
                   "text-lg font-medium transition-colors uppercase tracking-widest",
-                  activeSection === link.href.substring(1) ? "text-[var(--color-electric-pink)]" : "text-white hover:text-[var(--color-electric-pink)]"
+                  activeSection === link.href.substring(1) ? "text-[var(--color-lilac-ash)]" : "text-white hover:text-[var(--color-lilac-ash)]"
                 )}
               >
                 {link.name}
@@ -83,7 +83,7 @@ export function Navbar() {
                     onClick={() => setIsOpen(false)}
                     className={cn(
                       "text-5xl font-bold uppercase tracking-tighter font-heading block",
-                      activeSection === link.href.substring(1) ? "text-[var(--color-electric-pink)]" : "text-white hover:text-[var(--color-electric-pink)] transition-colors"
+                      activeSection === link.href.substring(1) ? "text-[var(--color-lilac-ash)]" : "text-white hover:text-[var(--color-lilac-ash)] transition-colors"
                     )}
                   >
                     {link.name}
