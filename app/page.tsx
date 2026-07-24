@@ -8,7 +8,7 @@ import { Footer } from './components/footer/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen selection:bg-[var(--color-neon-purple)] selection:text-white">
+    <main id="liquid-root" className="relative min-h-screen selection:bg-[var(--color-neon-purple)] selection:text-white">
       <Navbar />
       <Hero />
       <BestSellers />

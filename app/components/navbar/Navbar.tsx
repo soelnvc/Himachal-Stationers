@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { siteConfig } from '@/app/data/siteConfig';
@@ -19,10 +19,49 @@ export function Navbar() {
   const activeSection = useActiveSection(navLinks.map(l => l.href.substring(1)));
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    let activeInstance: any = null;
+
+    const initLiquidGlass = async () => {
+      try {
+        // @ts-ignore
+        const { LiquidGlass } = await import('@ybouane/liquidglass');
+        const glassEl = document.querySelector('.glass') as HTMLElement;
+        const rootEl = document.querySelector('#liquid-root') as HTMLElement;
+        
+        if (glassEl && rootEl) {
+          glassEl.dataset.config = JSON.stringify({
+            blurAmount: 0.2,
+            refraction: 0.1,
+            chromAberration: 0.02,
+            specular: 0.05,
+            edgeHighlight: 0.05,
+            fresnel: 0.3,
+          });
+
+          activeInstance = await LiquidGlass.init({
+            root: rootEl,
+            glassElements: [glassEl],
+          });
+        }
+      } catch (err) {
+        console.error('Failed to initialize LiquidGlass:', err);
+      }
+    };
+
+    initLiquidGlass();
+
+    return () => {
+      if (activeInstance && typeof activeInstance.destroy === 'function') {
+        activeInstance.destroy();
+      }
+    };
+  }, []);
+
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50">
-        <div className="w-full h-24 px-6 md:px-12 flex items-center justify-between">
+      <nav className="fixed top-0 left-0 right-0 z-50 glass">
+        <div className="w-full h-24 px-6 md:px-12 flex items-center justify-between relative z-10">
           <Link href="/" className="text-3xl font-bold font-heading uppercase text-white tracking-tighter">
             {siteConfig.name}
           </Link>
