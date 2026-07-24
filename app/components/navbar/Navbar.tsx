@@ -21,6 +21,7 @@ export function Navbar() {
 
   useEffect(() => {
     let activeInstance: any = null;
+    let cleanupScroll: (() => void) | null = null;
 
     const initLiquidGlass = async () => {
       try {
@@ -43,6 +44,20 @@ export function Navbar() {
             root: rootEl,
             glassElements: [glassEl],
           });
+
+          const handleScroll = () => {
+            activeInstance?.markChanged();
+          };
+
+          window.addEventListener('scroll', handleScroll, { passive: true });
+          cleanupScroll = () => {
+            window.removeEventListener('scroll', handleScroll);
+          };
+
+          // Trigger a refresh after a delay to ensure all async images/fonts are captured correctly
+          setTimeout(() => {
+            activeInstance?.markChanged();
+          }, 2000);
         }
       } catch (err) {
         console.error('Failed to initialize LiquidGlass:', err);
@@ -52,6 +67,7 @@ export function Navbar() {
     initLiquidGlass();
 
     return () => {
+      if (cleanupScroll) cleanupScroll();
       if (activeInstance && typeof activeInstance.destroy === 'function') {
         activeInstance.destroy();
       }
