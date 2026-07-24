@@ -43,7 +43,7 @@ export function Hero() {
       <div className="absolute top-8 left-6 z-20 md:top-12 md:left-12 select-none">
         <MaskedReveal direction="right" duration={0.8} delay={0.1} animateOnMount={true}>
           <span className="text-xl md:text-2xl font-bold font-heading uppercase text-[var(--color-absolute-light)] tracking-tighter">
-            Lumina <span className="text-[var(--color-electric-pink)]">Stationery</span>
+            {siteConfig.name.split(' ')[0]} <span className="text-[var(--color-electric-pink)]">{siteConfig.name.split(' ').slice(1).join(' ')}</span>
           </span>
         </MaskedReveal>
       </div>
