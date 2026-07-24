@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ShoppingBag, MessageSquare, MapPin, Mail } from 'lucide-react';
 import { siteConfig } from '@/app/data/siteConfig';
@@ -17,6 +17,25 @@ const navLinks = [
 
 export function Navbar() {
   const activeSection = useActiveSection(navLinks.map(l => l.href.substring(1)));
+  const [clickedTab, setClickedTab] = useState<string | null>(null);
+
+  const currentActive = clickedTab ?? activeSection;
+
+  useEffect(() => {
+    if (activeSection === clickedTab) {
+      setClickedTab(null);
+    }
+  }, [activeSection, clickedTab]);
+
+  const handleTabClick = (href: string) => {
+    const target = href.substring(1);
+    setClickedTab(target);
+
+    // Safety fallback timeout to clear clickedTab state in case scroll/observer threshold isn't fully reached
+    setTimeout(() => {
+      setClickedTab((prev) => (prev === target ? null : prev));
+    }, 1000);
+  };
 
   useEffect(() => {
     let activeInstance: any = null;
@@ -89,9 +108,10 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={() => handleTabClick(link.href)}
                 className={cn(
                   "text-lg font-medium transition-colors uppercase tracking-widest",
-                  activeSection === link.href.substring(1) ? "text-[var(--color-lilac-ash)]" : "text-white hover:text-[var(--color-lilac-ash)]"
+                  currentActive === link.href.substring(1) ? "text-[var(--color-lilac-ash)]" : "text-white hover:text-[var(--color-lilac-ash)]"
                 )}
               >
                 {link.name}
@@ -106,17 +126,18 @@ export function Navbar() {
         <div className="w-full h-20 px-4 flex items-center justify-around relative z-10">
           {navLinks.map((link) => {
             const Icon = link.icon;
-            const isActive = activeSection === link.href.substring(1);
+            const isActive = currentActive === link.href.substring(1);
             return (
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={() => handleTabClick(link.href)}
                 className="relative py-3 px-6 flex items-center justify-center transition-all duration-300"
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 bg-white/15 backdrop-blur-md border border-white/20 rounded-2xl z-0"
+                    className="absolute inset-0 bg-[var(--color-absolute-light)]/45 backdrop-blur-md border border-[var(--color-absolute-light)]/30 rounded-2xl z-0"
                     transition={{ type: 'spring', stiffness: 350, damping: 28 }}
                   />
                 )}
