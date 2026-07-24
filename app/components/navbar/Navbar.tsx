@@ -6,6 +6,7 @@ import { ShoppingBag, MessageSquare, MapPin, Mail } from 'lucide-react';
 import { siteConfig } from '@/app/data/siteConfig';
 import { useActiveSection } from '@/app/hooks/useActiveSection';
 import { cn } from '@/lib/utils';
+import { motion } from 'motion/react';
 
 const navLinks = [
   { name: 'Shop', href: '#shop', icon: ShoppingBag },
@@ -37,6 +38,7 @@ export function Navbar() {
               specular: 0.05,
               edgeHighlight: 0.05,
               fresnel: 0.3,
+              cornerRadius: 24, // Enable rounded corners in WebGL outline/rendering
             });
           });
 
@@ -100,8 +102,8 @@ export function Navbar() {
       </nav>
 
       {/* Mobile Bottom Navbar (Floating Tab Bar - iOS style) */}
-      <nav className="fixed bottom-6 left-6 right-6 z-50 glass md:hidden">
-        <div className="w-full h-20 px-6 flex items-center justify-around relative z-10">
+      <nav className="fixed bottom-6 left-6 right-6 z-50 glass md:hidden rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+        <div className="w-full h-20 px-4 flex items-center justify-around relative z-10">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = activeSection === link.href.substring(1);
@@ -109,13 +111,19 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={cn(
-                  "flex flex-col items-center justify-center space-y-1 transition-colors py-2 px-4",
-                  isActive ? "text-[var(--color-lilac-ash)]" : "text-white hover:text-[var(--color-lilac-ash)]"
-                )}
+                className="relative py-3 px-6 flex items-center justify-center transition-all duration-300"
               >
-                <Icon className="h-6 w-6" />
-                <span className="text-[10px] font-bold uppercase tracking-widest">{link.name}</span>
+                {isActive && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute inset-0 bg-white/15 backdrop-blur-md border border-white/20 rounded-2xl z-0"
+                    transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                  />
+                )}
+                <Icon className={cn(
+                  "h-6 w-6 relative z-10 transition-colors duration-300",
+                  isActive ? "text-[var(--color-lilac-ash)] scale-110" : "text-white/60 hover:text-white"
+                )} />
               </Link>
             );
           })}
