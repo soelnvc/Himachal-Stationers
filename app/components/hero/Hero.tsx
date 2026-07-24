@@ -34,7 +34,7 @@ export function Hero() {
 
   return (
     <section 
-      className="relative min-h-screen pt-24 flex flex-col justify-between pb-12 overflow-hidden bg-[var(--color-background)] cursor-crosshair"
+      className="relative min-h-screen pt-24 flex flex-col justify-between pb-32 md:pb-16 overflow-hidden bg-[var(--color-background)] cursor-crosshair"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       onPointerDown={handlePointerMove} // Capture mobile touch-down
@@ -43,14 +43,20 @@ export function Hero() {
       <SwissGridLine direction="horizontal" className="top-32" delay={0.5} />
       <SwissGridLine direction="vertical" className="left-6 md:left-24" delay={0.6} />
       
-      <div className="container mx-auto px-6 md:px-12 relative z-10 w-full mt-auto mb-8 pointer-events-none select-none">
-        <div className="flex flex-col space-y-12">
+      <div className="container mx-auto px-6 md:px-12 relative z-10 w-full mt-auto">
+        <div className="flex flex-col space-y-8 md:space-y-12">
           
           <div className="w-full">
             <MaskedReveal direction="up" duration={1.2} delay={0.2} animateOnMount={true}>
-              <h1 className="text-6xl sm:text-8xl md:text-[11vw] lg:text-[12vw] font-bold leading-[0.8] tracking-tighter uppercase text-[var(--color-absolute-light)] m-0 p-0 drop-shadow-2xl">
+              {/* Desktop Typography */}
+              <h1 className="hidden md:block text-6xl sm:text-8xl md:text-[11vw] lg:text-[12vw] font-bold leading-[0.8] tracking-tighter uppercase text-[var(--color-absolute-light)] m-0 p-0 drop-shadow-2xl">
                 {siteConfig.name.split(' ')[0]}<br />
                 <span className="text-[var(--color-electric-pink)]">{siteConfig.name.split(' ')[1] || 'Store'}</span>
+              </h1>
+              {/* Mobile Swiss Aligned Typography (stacked to form a clean solid block) */}
+              <h1 className="md:hidden font-bold leading-[0.75] uppercase tracking-tighter text-[var(--color-absolute-light)] m-0 p-0 drop-shadow-2xl">
+                <span className="text-[15.5vw] block font-heading">LUMINA</span>
+                <span className="text-[9.3vw] block text-[var(--color-electric-pink)] font-heading">STATIONERY</span>
               </h1>
             </MaskedReveal>
           </div>
@@ -58,19 +64,19 @@ export function Hero() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end border-t border-[rgba(255,255,255,0.2)] pt-8">
             <div className="md:col-span-7">
               <MaskedReveal direction="left" duration={1} delay={0.6} animateOnMount={true}>
-                <p className="text-xl md:text-2xl text-[var(--color-absolute-light)] font-medium text-balance border-l-4 border-[var(--color-neon-orange)] pl-6 drop-shadow-lg">
+                <p className="text-lg md:text-2xl text-[var(--color-absolute-light)] font-medium text-balance border-l-4 border-[var(--color-neon-orange)] pl-6 drop-shadow-lg">
                   {siteConfig.description}
                 </p>
               </MaskedReveal>
             </div>
 
-            <div className="md:col-span-5 pointer-events-auto">
+            <div className="md:col-span-5 pointer-events-auto w-full">
               <MaskedReveal direction="up" duration={0.8} delay={0.8} animateOnMount={true}>
                 <a 
                   href="#shop"
-                  className="inline-flex items-center justify-between group border-b-2 border-[var(--color-absolute-light)] pb-4 w-full text-[var(--color-absolute-light)] hover:text-[var(--color-neon-orange)] hover:border-[var(--color-neon-orange)] transition-colors text-2xl uppercase tracking-tight font-bold"
+                  className="inline-flex items-center justify-between group border-y md:border-t-0 md:border-b-2 border-[var(--color-absolute-light)]/30 md:border-[var(--color-absolute-light)] py-6 md:py-0 md:pb-4 w-full text-[var(--color-absolute-light)] hover:text-[var(--color-neon-orange)] hover:border-[var(--color-neon-orange)] transition-colors text-2xl uppercase tracking-tight font-bold"
                 >
-                  <span>Explore</span>
+                  <span>Explore Collection</span>
                   <span className="group-hover:translate-x-4 transition-transform duration-300">→</span>
                 </a>
               </MaskedReveal>
