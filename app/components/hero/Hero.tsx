@@ -34,11 +34,29 @@ export function Hero() {
 
   return (
     <section 
-      className="relative min-h-screen pt-24 flex flex-col justify-between pb-32 md:pb-16 overflow-hidden bg-[var(--color-background)] cursor-crosshair"
+      className="relative min-h-screen pt-36 flex flex-col justify-between pb-32 md:pb-16 overflow-hidden bg-[var(--color-background)] cursor-crosshair"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       onPointerDown={handlePointerMove} // Capture mobile touch-down
     >
+      {/* Magazine Header / Branding at top-left */}
+      <div className="absolute top-8 left-6 z-20 md:top-12 md:left-12 select-none">
+        <MaskedReveal direction="right" duration={0.8} delay={0.1} animateOnMount={true}>
+          <span className="text-xl md:text-2xl font-bold font-heading uppercase text-[var(--color-absolute-light)] tracking-tighter">
+            Lumina <span className="text-[var(--color-electric-pink)]">Stationery</span>
+          </span>
+        </MaskedReveal>
+      </div>
+
+      {/* Magazine Issue / Detail at top-right */}
+      <div className="absolute top-8 right-6 z-20 md:top-12 md:right-12 text-right hidden sm:block select-none">
+        <MaskedReveal direction="left" duration={0.8} delay={0.1} animateOnMount={true}>
+          <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-absolute-light)]/60">
+            Issue No. 01 // Est. 2026 // Curated Studio
+          </span>
+        </MaskedReveal>
+      </div>
+
       {/* Structural grid lines */}
       <SwissGridLine direction="horizontal" className="top-32" delay={0.5} />
       <SwissGridLine direction="vertical" className="left-6 md:left-24" delay={0.6} />
@@ -46,21 +64,23 @@ export function Hero() {
       <div className="container mx-auto px-6 md:px-12 relative z-10 w-full mt-auto">
         <div className="flex flex-col space-y-8 md:space-y-12">
           
+          {/* Magazine Cover Page Massive Aligned Headline */}
           <div className="w-full">
             <MaskedReveal direction="up" duration={1.2} delay={0.2} animateOnMount={true}>
-              {/* Desktop Typography */}
-              <h1 className="hidden md:block text-6xl sm:text-8xl md:text-[11vw] lg:text-[12vw] font-bold leading-[0.8] tracking-tighter uppercase text-[var(--color-absolute-light)] m-0 p-0 drop-shadow-2xl">
-                {siteConfig.name.split(' ')[0]}<br />
-                <span className="text-[var(--color-electric-pink)]">{siteConfig.name.split(' ')[1] || 'Store'}</span>
+              {/* Desktop Headline */}
+              <h1 className="hidden md:block text-6xl sm:text-8xl md:text-[9vw] lg:text-[10vw] font-bold leading-[0.8] tracking-tighter uppercase text-[var(--color-absolute-light)] m-0 p-0 drop-shadow-2xl">
+                STATIONERY<br />
+                <span className="text-[var(--color-electric-pink)]">AT BEST PRICE</span>
               </h1>
-              {/* Mobile Swiss Aligned Typography (stacked to form a clean solid block) */}
+              {/* Mobile Headline (precisely aligned width for a block layout) */}
               <h1 className="md:hidden font-bold leading-[0.75] uppercase tracking-tighter text-[var(--color-absolute-light)] m-0 p-0 drop-shadow-2xl">
-                <span className="text-[15.5vw] block font-heading">LUMINA</span>
-                <span className="text-[9.3vw] block text-[var(--color-electric-pink)] font-heading">STATIONERY</span>
+                <span className="text-[14vw] block font-heading">STATIONERY</span>
+                <span className="text-[10.8vw] block text-[var(--color-electric-pink)] font-heading">AT BEST PRICE</span>
               </h1>
             </MaskedReveal>
           </div>
           
+          {/* Teaser descriptions and Explore actions */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end border-t border-[rgba(255,255,255,0.2)] pt-8">
             <div className="md:col-span-7">
               <MaskedReveal direction="left" duration={1} delay={0.6} animateOnMount={true}>
