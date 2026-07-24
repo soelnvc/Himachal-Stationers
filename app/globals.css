@@ -80,3 +80,11 @@
 @utility swiss-border-r {
   border-right: 1px solid var(--color-border);
 }
+
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

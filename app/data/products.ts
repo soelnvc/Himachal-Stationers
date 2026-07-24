@@ -47,5 +47,27 @@ export const products: Product[] = [
     category: 'Paperwork',
     image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop',
     price: '$85.00',
+  },
+  {
+    id: '7',
+    name: 'Classic Fountain Pen',
+    category: 'Kids & Art',
+    image: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?q=80&w=600&auto=format&fit=crop',
+    price: '$45.00',
+  },
+  {
+    id: '8',
+    name: 'Stark Washi Tapes',
+    category: 'Paperwork',
+    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=600&auto=format&fit=crop',
+    price: '$14.00',
+    isBestSeller: true,
+  },
+  {
+    id: '9',
+    name: 'Minimalist Sketchbook',
+    category: 'Back to School',
+    image: 'https://images.unsplash.com/photo-1506784926709-22f1ec395907?q=80&w=600&auto=format&fit=crop',
+    price: '$28.00',
   }
 ];

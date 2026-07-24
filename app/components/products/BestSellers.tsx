@@ -34,7 +34,7 @@ export function BestSellers() {
       </div>
 
       <div className="w-full border-y border-[var(--color-border)] bg-[var(--color-border)]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px]">
+        <div className="grid grid-cols-3 gap-[1px]">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
