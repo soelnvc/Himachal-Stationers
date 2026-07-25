@@ -10,22 +10,21 @@ import { ShopGrid } from './components/ShopGrid';
 import { Footer } from '@/app/components/footer/Footer';
 
 export default function ShopPage() {
-  // Default to the first category, e.g., 'back-to-school' or 'cards'
-  // Based on the mockup, 'cards' was the active one
   const [activeCategoryId, setActiveCategoryId] = useState<string>('cards');
 
   const activeCategory = shopCategories.find(c => c.id === activeCategoryId) || shopCategories[1];
 
   return (
-    <main className="min-h-screen bg-white selection:bg-[#783228] selection:text-white">
+    <main className="min-h-screen bg-[var(--color-background)] selection:bg-[var(--color-electric-pink)] selection:text-white">
       
-      {/* Floating Back Button */}
+      {/* Swiss Style Floating Back Button */}
       <Link 
         href="/"
-        className="fixed top-6 left-6 z-50 bg-black/10 hover:bg-black/20 backdrop-blur-md p-3 rounded-full transition-colors text-black"
-        aria-label="Back to Home"
+        className="fixed top-6 left-6 z-50 bg-[var(--color-background)]/90 text-[var(--color-foreground)] border border-[var(--color-border)] backdrop-blur-md p-3.5 hover:bg-[var(--color-foreground)] hover:text-[var(--color-background)] transition-all duration-300 shadow-xl uppercase font-heading text-xs flex items-center gap-2 group"
+        aria-label="Back to Main Site"
       >
-        <ArrowLeft className="w-6 h-6" />
+        <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+        <span className="hidden sm:inline tracking-widest font-bold">Return</span>
       </Link>
 
       <ShopHero 
@@ -38,7 +37,6 @@ export default function ShopPage() {
       
       <ShopGrid products={activeCategory.products} />
       
-      {/* Reusing existing Footer, but note it might contrast with the new aesthetic slightly, though footers are fine */}
       <Footer />
     </main>
   );
