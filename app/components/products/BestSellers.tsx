@@ -43,7 +43,7 @@ export function BestSellers() {
 
       <div className="w-full border-b border-[var(--color-border)]">
         <a 
-          href="#" 
+          href="/shop" 
           className="flex items-center justify-between px-6 md:px-12 py-8 group hover:bg-[var(--color-border)]/25 transition-colors text-xl md:text-2xl uppercase tracking-widest font-bold text-[var(--color-foreground)]"
         >
           <span>View Shop</span>
