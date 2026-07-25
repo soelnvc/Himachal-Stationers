@@ -96,60 +96,41 @@ export function Navbar() {
   }, []);
 
   return (
-    <>
-      {/* Desktop Top Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass hidden md:block">
-        <div className="w-full h-24 px-6 md:px-12 flex items-center justify-between relative z-10">
-          <Link href="/" className="text-3xl font-bold font-heading uppercase text-white tracking-tighter">
-            {siteConfig.name}
-          </Link>
-          <div className="hidden md:flex items-center space-x-12">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => handleTabClick(link.href)}
-                className={cn(
-                  "text-lg font-medium transition-colors uppercase tracking-widest",
-                  currentActive === link.href.substring(1) ? "text-[var(--color-lilac-ash)]" : "text-white hover:text-[var(--color-lilac-ash)]"
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </nav>
+    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 glass rounded-3xl overflow-hidden border border-white/10 shadow-2xl w-[calc(100%-3rem)] max-w-md">
+      <div className="w-full h-20 px-4 flex items-center justify-around relative z-10">
+        {navLinks.map((link) => {
+          const Icon = link.icon;
+          const isActive = currentActive === link.href.substring(1);
+          return (
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={() => handleTabClick(link.href)}
+              className="relative py-3 px-6 flex items-center justify-center transition-all duration-300 group"
+            >
+              {/* Active Glass Block Indicator */}
+              {isActive && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 bg-[var(--color-absolute-light)]/45 backdrop-blur-md border border-[var(--color-absolute-light)]/30 rounded-2xl z-0"
+                  transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                />
+              )}
 
-      {/* Mobile Bottom Navbar (Floating Tab Bar - iOS style) */}
-      <nav className="fixed bottom-6 left-6 right-6 z-50 glass md:hidden rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-        <div className="w-full h-20 px-4 flex items-center justify-around relative z-10">
-          {navLinks.map((link) => {
-            const Icon = link.icon;
-            const isActive = currentActive === link.href.substring(1);
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => handleTabClick(link.href)}
-                className="relative py-3 px-6 flex items-center justify-center transition-all duration-300"
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-[var(--color-absolute-light)]/45 backdrop-blur-md border border-[var(--color-absolute-light)]/30 rounded-2xl z-0"
-                    transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-                  />
-                )}
-                <Icon className={cn(
-                  "h-6 w-6 relative z-10 transition-colors duration-300",
-                  isActive ? "text-[var(--color-lilac-ash)] scale-110" : "text-white/60 hover:text-white"
-                )} />
-              </Link>
-            );
-          })}
-        </div>
-      </nav>
-    </>
+              {/* Icon */}
+              <Icon className={cn(
+                "h-6 w-6 relative z-10 transition-colors duration-300",
+                isActive ? "text-[var(--color-lilac-ash)] scale-110" : "text-white/60 group-hover:text-white"
+              )} />
+
+              {/* Desktop Hover Tooltip */}
+              <span className="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none font-heading font-bold text-[10px] uppercase tracking-widest bg-black/90 text-white px-2.5 py-1 rounded border border-white/20 whitespace-nowrap shadow-lg z-30">
+                {link.name}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
   );
 }

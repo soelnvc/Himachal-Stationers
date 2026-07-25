@@ -48,12 +48,19 @@ export function Hero() {
         </MaskedReveal>
       </div>
 
-      {/* Magazine Issue / Detail at top-right */}
-      <div className="absolute top-8 right-6 z-20 md:top-12 md:right-12 text-right hidden sm:block select-none">
+      {/* Shop Icon link at top-right (opposite side of logo) */}
+      <div className="absolute top-8 right-6 z-20 md:top-12 md:right-12 select-none flex items-center gap-4">
         <MaskedReveal direction="left" duration={0.8} delay={0.1} animateOnMount={true}>
-          <span className="text-xs font-bold uppercase tracking-widest text-[var(--color-absolute-light)]/60">
-            Issue No. 01 // Est. 2026 // Curated Studio
-          </span>
+          <a
+            href="/shop"
+            className="flex items-center gap-2 px-4 py-2 bg-[var(--color-absolute-light)]/15 hover:bg-[var(--color-absolute-light)]/30 border border-[var(--color-absolute-light)]/30 backdrop-blur-md rounded-full text-[var(--color-absolute-light)] transition-all duration-300 group shadow-lg"
+            title="Explore Shop Catalog"
+          >
+            <span className="text-xs font-bold font-heading uppercase tracking-widest hidden xs:inline">Shop</span>
+            <svg className="w-4 h-4 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+          </a>
         </MaskedReveal>
       </div>
 
