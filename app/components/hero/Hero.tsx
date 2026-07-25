@@ -53,7 +53,7 @@ export function Hero() {
         <MaskedReveal direction="left" duration={0.8} delay={0.1} animateOnMount={true}>
           <a
             href="/shop"
-            className="flex items-center gap-2 px-4 py-2 bg-[var(--color-absolute-light)]/15 hover:bg-[var(--color-absolute-light)]/30 border border-[var(--color-absolute-light)]/30 backdrop-blur-md rounded-full text-[var(--color-absolute-light)] transition-all duration-300 group shadow-lg"
+            className="flex items-center gap-2 px-4 py-2 bg-[var(--color-absolute-light)]/15 hover:bg-[var(--color-absolute-light)]/30 border border-[var(--color-absolute-light)]/30 backdrop-blur-md rounded-full text-[var(--color-absolute-light)] transition-all duration-300 group"
             title="Explore Shop Catalog"
           >
             <span className="text-xs font-bold font-heading uppercase tracking-widest hidden xs:inline">Shop</span>
@@ -75,12 +75,12 @@ export function Hero() {
           <div className="w-full">
             <MaskedReveal direction="up" duration={1.2} delay={0.2} animateOnMount={true}>
               {/* Desktop Headline */}
-              <h1 className="hidden md:block text-6xl sm:text-8xl md:text-[9vw] lg:text-[10vw] font-bold leading-[0.8] tracking-tighter uppercase text-[var(--color-absolute-light)] m-0 p-0 drop-shadow-2xl">
+              <h1 className="hidden md:block text-6xl sm:text-8xl md:text-[9vw] lg:text-[10vw] font-bold leading-[0.8] tracking-tighter uppercase text-[var(--color-absolute-light)] m-0 p-0">
                 STATIONERY<br />
                 <span className="text-[var(--color-electric-pink)]">AT BEST PRICE</span>
               </h1>
               {/* Mobile Headline (precisely aligned width for a block layout) */}
-              <h1 className="md:hidden font-bold leading-[0.75] uppercase tracking-tighter text-[var(--color-absolute-light)] m-0 p-0 drop-shadow-2xl">
+              <h1 className="md:hidden font-bold leading-[0.75] uppercase tracking-tighter text-[var(--color-absolute-light)] m-0 p-0">
                 <span className="text-[14vw] block font-heading">STATIONERY</span>
                 <span className="text-[10.8vw] block text-[var(--color-electric-pink)] font-heading">AT BEST PRICE</span>
               </h1>
@@ -91,7 +91,7 @@ export function Hero() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end border-t border-[rgba(255,255,255,0.2)] pt-8">
             <div className="md:col-span-7">
               <MaskedReveal direction="left" duration={1} delay={0.6} animateOnMount={true}>
-                <p className="text-lg md:text-2xl text-[var(--color-absolute-light)] font-medium text-balance border-l-4 border-[var(--color-neon-orange)] pl-6 drop-shadow-lg">
+                <p className="text-lg md:text-2xl text-[var(--color-absolute-light)] font-medium text-balance border-l-4 border-[var(--color-neon-orange)] pl-6">
                   {siteConfig.description}
                 </p>
               </MaskedReveal>

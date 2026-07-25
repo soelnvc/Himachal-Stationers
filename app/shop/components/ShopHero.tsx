@@ -50,7 +50,7 @@ export function ShopHero({ categories, activeCategory, onCategoryChange }: ShopH
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-5xl sm:text-7xl md:text-9xl font-bold uppercase tracking-tighter text-[var(--color-absolute-light)] font-heading leading-none drop-shadow-2xl"
+          className="text-5xl sm:text-7xl md:text-9xl font-bold uppercase tracking-tighter text-[var(--color-absolute-light)] font-heading leading-none"
         >
           {activeCategory.label}
         </motion.h1>

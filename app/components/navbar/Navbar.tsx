@@ -96,7 +96,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 glass rounded-3xl overflow-hidden border border-white/10 shadow-2xl w-[calc(100%-3rem)] max-w-md">
+    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 glass rounded-3xl overflow-hidden border border-white/10 w-[calc(100%-3rem)] max-w-md">
       <div className="w-full h-20 px-4 flex items-center justify-around relative z-10">
         {navLinks.map((link) => {
           const Icon = link.icon;
@@ -124,7 +124,7 @@ export function Navbar() {
               )} />
 
               {/* Desktop Hover Tooltip */}
-              <span className="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none font-heading font-bold text-[10px] uppercase tracking-widest bg-black/90 text-white px-2.5 py-1 rounded border border-white/20 whitespace-nowrap shadow-lg z-30">
+              <span className="absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none font-heading font-bold text-[10px] uppercase tracking-widest bg-black/90 text-white px-2.5 py-1 rounded border border-white/20 whitespace-nowrap z-30">
                 {link.name}
               </span>
             </Link>

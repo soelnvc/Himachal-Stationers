@@ -20,7 +20,7 @@ export default function ShopPage() {
       {/* Swiss Style Floating Back Button */}
       <Link 
         href="/"
-        className="fixed top-6 left-6 z-50 bg-[var(--color-background)]/90 text-[var(--color-foreground)] border border-[var(--color-border)] backdrop-blur-md p-3.5 hover:bg-[var(--color-foreground)] hover:text-[var(--color-background)] transition-all duration-300 shadow-xl uppercase font-heading text-xs flex items-center gap-2 group"
+        className="fixed top-6 left-6 z-50 bg-[var(--color-background)]/90 text-[var(--color-foreground)] border border-[var(--color-border)] backdrop-blur-md p-3.5 hover:bg-[var(--color-foreground)] hover:text-[var(--color-background)] transition-all duration-300 uppercase font-heading text-xs flex items-center gap-2 group"
         aria-label="Back to Main Site"
       >
         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />

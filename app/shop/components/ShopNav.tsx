@@ -42,7 +42,7 @@ export function ShopNav({ categories, activeCategory, onCategoryChange }: ShopNa
               className={cn(
                 "relative px-6 py-3.5 md:px-8 md:py-4 transition-all duration-500 ease-out flex-shrink-0 snap-center uppercase tracking-widest font-heading font-bold text-xs md:text-sm border select-none cursor-pointer",
                 isActive
-                  ? "scale-110 md:scale-125 z-10 bg-[var(--color-foreground)] text-[var(--color-background)] border-[var(--color-foreground)] shadow-2xl"
+                  ? "scale-110 md:scale-125 z-10 bg-[var(--color-foreground)] text-[var(--color-background)] border-[var(--color-foreground)]"
                   : "scale-90 opacity-60 hover:opacity-90 bg-[var(--color-background)]/90 text-[var(--color-foreground)] border-[var(--color-border)] backdrop-blur-md"
               )}
             >

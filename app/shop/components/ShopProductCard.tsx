@@ -24,7 +24,7 @@ export function ShopProductCard({ product }: ShopProductCardProps) {
       <div className="absolute inset-0 bg-gradient-to-t from-[rgba(34,34,34,0.85)] via-[rgba(34,34,34,0.2)] to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500" />
 
       {/* Floating Swiss Price Tag Overlay (Top Right) */}
-      <div className="absolute top-3 right-3 bg-[var(--color-foreground)] text-[var(--color-background)] text-xs md:text-sm font-bold uppercase tracking-wider px-3 py-1 font-heading z-10 shadow-lg">
+      <div className="absolute top-3 right-3 bg-[var(--color-foreground)] text-[var(--color-background)] text-xs md:text-sm font-bold uppercase tracking-wider px-3 py-1 font-heading z-10">
         {product.price}
       </div>
     </div>
